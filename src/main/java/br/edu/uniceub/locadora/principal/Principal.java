@@ -24,8 +24,6 @@ public class Principal {
     }
 
 
-
-
 //    EntityManager em = Persistence
 //            .createEntityManagerFactory("VeiculoHibernatePU")
 //            .createEntityManager();
