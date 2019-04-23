@@ -16,7 +16,7 @@ public class Principal {
 
 
         Cliente isaac = new Cliente();
-        isaac.setCpf(215478244L);
+        isaac.setCpf("0542148711");
 
         em.persist(isaac);
         em.getTransaction().commit();

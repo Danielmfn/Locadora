@@ -3,18 +3,24 @@ package br.edu.uniceub.locadora.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="tb_locacao")
 public class Locacao implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     @Column(name = "id_locacao")
-    private Long idLocacao;
-    @Column(name = "id_cliente")
-    private Long idCliente;
-    @Column(name = "id_midia")
-    private Long idMidia;
+    private Integer idLocacao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente clientes;
+
+    @ManyToOne
+    @JoinColumn(name = "id_midia")
+    private Midia midia;
+
     @Column(name = "dt_locacao")
     private LocalDateTime dtLocacao;
 
@@ -37,28 +43,29 @@ public class Locacao implements Serializable {
         return getIdLocacao() != null ? getIdLocacao().hashCode() : 0;
     }
 
-    public Long getIdLocacao() {
+
+    public Integer getIdLocacao() {
         return idLocacao;
     }
 
-    public void setIdLocacao(Long id_locacao) {
+    public void setIdLocacao(Integer id_locacao) {
         this.idLocacao = id_locacao;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Cliente getClientes() {
+        return clientes;
     }
 
-    public void setIdCliente(Long id_cliente) {
-        this.idCliente = id_cliente;
+    public void setClientes(Cliente clientes) {
+        this.clientes = clientes;
     }
 
-    public Long getIdMidia() {
-        return idMidia;
+    public Midia getMidia() {
+        return midia;
     }
 
-    public void setIdMidia(Long id_midia) {
-        this.idMidia = id_midia;
+    public void setMidia(Midia midia) {
+        this.midia = midia;
     }
 
     public LocalDateTime getDtLocacao() {

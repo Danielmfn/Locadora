@@ -9,12 +9,14 @@ import java.util.List;
 public class TipoMidia implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     @Column(name = "id_tipo_midia")
-    private Long id;
+    private Integer id;
+
     @Column(name = "ds_nome")
-    private Long idGenero;
-    @OneToMany(mappedBy = "tipoMidia")
+    private String tpMidia;
+
+    @OneToMany(mappedBy = "tpMidia")
     private List<Midia> midias;
 
     public TipoMidia() {
@@ -36,19 +38,28 @@ public class TipoMidia implements Serializable {
         return getId() != null ? getId().hashCode() : 0;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getIdGenero() {
-        return idGenero;
+
+    public List<Midia> getMidias() {
+        return midias;
     }
 
-    public void setIdGenero(Long id_genero) {
-        this.idGenero = id_genero;
+    public void setMidias(List<Midia> midias) {
+        this.midias = midias;
+    }
+
+    public String getTpMidia() {
+        return tpMidia;
+    }
+
+    public void setTpMidia(String tpMidia) {
+        this.tpMidia = tpMidia;
     }
 }

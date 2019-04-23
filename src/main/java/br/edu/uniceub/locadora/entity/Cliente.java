@@ -3,22 +3,30 @@ package br.edu.uniceub.locadora.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cliente")
 public class Cliente implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     @Column(name = "id_cliente")
-    private String idCliente;
+    private Integer idCliente;
+
     @Column(name = "ds_nome")
     private String nome;
+
     @Column(name = "ds_cpf")
-    private Long cpf;
+    private String cpf;
+
     @Column(name = "dt_matricula")
     private LocalDateTime dtMatricula;
+
     @Column(name = "ds_email")
     private String email;
+
+    @OneToMany(mappedBy="clientes")
+    private List<Locacao> locacoes;
 
     public Cliente() {
     }
@@ -39,11 +47,10 @@ public class Cliente implements Serializable {
         return getIdCliente() != null ? getIdCliente().hashCode() : 0;
     }
 
-    public String getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
-
-    public void setIdCliente(String id) {
+    public void setIdCliente(Integer id) {
         this.idCliente = id;
     }
 
@@ -55,11 +62,11 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -78,4 +85,13 @@ public class Cliente implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Locacao> getLocacoes() {
+        return locacoes;
+    }
+
+    public void setLocacoes(List<Locacao> locacoes) {
+        this.locacoes = locacoes;
+    }
 }
+

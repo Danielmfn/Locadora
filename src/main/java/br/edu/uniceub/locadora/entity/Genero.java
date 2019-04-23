@@ -9,9 +9,9 @@ import java.util.List;
 public class Genero implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     @Column(name = "id_genero")
-    private Long id;
+    private Integer id;
     @Column(name = "ds_nome")
     private String nome;
 
@@ -37,11 +37,11 @@ public class Genero implements Serializable {
         return getId() != null ? getId().hashCode() : 0;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
